@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feng Wang</title>
+  <meta name="description" content="Feng Wang — M.S. Graduate & Passionate Researcher in Applied Statistics and Psychometrics at Boston College." />
+  <link rel="preload" as="image" href="https://i.imgur.com/placeholder.jpg" />
+  <style>
+    body {
+      margin: 0;
+      background: #fff;
+      color: #111;
+      font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Fira Code', 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 24px;
+    }
+
+    .head {
+      text-align: center;
+    }
+
+    .head img {
+      width: 140px;
+      height: 140px;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 20px;
+      transition: filter 220ms ease, opacity 220ms ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      background-color: #f5f5f5;
+      background-image: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+    }
+
+    .head img.blur {
+      filter: blur(10px);
+      opacity: 0.8;
+    }
+
+    .head img.loaded {
+      filter: none;
+      opacity: 1;
+    }
+
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 30px;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+    }
+
+    .tag {
+      margin: 0 0 16px 0;
+      color: #555;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .links a {
+      margin: 0;
+      color: #111;
+      text-decoration: none;
+      transition: all 200ms ease;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1.2;
+      font-weight: 400;
+      padding: 4px 0;
+    }
+
+    .links a:hover {
+      color: #333;
+      transform: translateY(-1px);
+    }
+
+    .links a.disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .links a:focus-visible {
+      outline: 2px solid #111;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .terminal {
+      display: block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #0f1117;
+      color: #e6e7eb;
+      border: 1px solid #1f2330;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-top: 8px;
+      max-height: 360px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      line-height: 1.45;
+      font-size: 14px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      hyphens: auto;
+    }
+
+    .terminal a {
+      color: #8ab4f8;
+      text-decoration: underline;
+    }
+
+    .terminal a:hover {
+      color: #cde3ff;
+    }
+
+    .terminal[hidden] {
+      display: none;
+    }
+
+    .prompt {
+      color: #6cff6c;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="head">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAYAAAA8AXHiAAAACXBIWXMAAAsTAAALEwEAmpwYAAAMB0lEQVR4nO2de5BU1ZnAf6d7YBgGGEAeAiKgBhSNGqMxaowaH1GjxmjUaDRqNBo1Go0ajUaNRo1Go0ajUaPRqNFoNGo0Go1Go0ajUaPRqNFo1Gg0ajQaNRqNRo1G" alt="Feng Wang" loading="eager" decoding="async" class="loaded" />
+      <h1>Feng Wang</h1>
+      <p class="tag">M.S. Graduate & Passionate Researcher<br>Applied Statistics and Psychometrics<br>Boston College</p>
+      <p class="links">
+        <a href="#email" data-target="email">Email</a>
+        <a href="#education" data-target="education">Education</a>
+        <a href="#research" data-target="research">Research</a>
+        <a href="#projects" data-target="projects">Projects</a>
+        <a href="#publications" data-target="publications">Publications</a>
+        <a href="#skills" data-target="skills">Skills</a>
+        <a href="https://drive.google.com/file/d/1ZA9fjiB4Pl4U36Meapsk0f0Tub7Em1qH/view?usp=drive_link" aria-label="CV" title="CV">CV↗</a>
+        <a href="https://www.linkedin.com/in/feng-w-247944358/" aria-label="LinkedIn" title="LinkedIn">LinkedIn↗</a>
+      </p>
+    </div>
+    <div class="body">
+      <div id="terminal" class="terminal" aria-live="polite" hidden></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tagEl = document.querySelector('.tag');
+      if (tagEl) tagEl.innerHTML = 'M.S. Graduate & Passionate Researcher<br>Applied Statistics and Psychometrics<br>Boston College';
+
+      var terminal = document.getElementById('terminal');
+      var navLinks = document.querySelectorAll('.links a[data-target]');
+      var allTopLinks = document.querySelectorAll('.links a');
+      var isTyping = false;
+      var typingTimeout = null;
+      var typingToken = 0;
+
+      var contentMap = {
+        email: [
+          '> open email',
+          '',
+          '- hgwang98@gmail.com',
+          '- Phone: 617-906-1133'
+        ],
+        education: [
+          '> open education',
+          '',
+          '**Boston College** (2023 - 2025)',
+          '- M.S. in Applied Statistics and Psychometrics',
+          '- Dean\'s Scholarship recipient (All semesters)',
+          '',
+          '**University of California, Davis** (2017 - 2020)',
+          '- B.S. in Psychology'
+        ],
+        research: [
+          '> open research',
+          '',
+          'Research Interests:',
+          '- AI in Education',
+          '- Educational Assessment',
+          '- Equity/Fairness',
+          '',
+          'Research Projects:',
+          '',
+          '**Harvard & Smithsonian Center for Astrophysics** (2025-Present)',
+          '• Bayesian Measurement Invariance & Alignment Modeling',
+          '• Trajectory-like Latent Class Analysis (LCA)',
+          '• Machine Learning Predictive Modeling for CS Self-Efficacy',
+          '',
+          '**UC Berkeley DEAO Lab** (2025)',
+          '• Online Racism & Mental Health Communication',
+          '',
+          '**Columbia University Psychology** (2022-2023)',
+          '• Cultural Trust & Resilience in Elderly Populations'
+        ],
+        projects: [
+          '> open projects',
+          '',
+          'Independent Research Projects:',
+          '',
+          '• **IRT Validation of the SWLS (Satisfaction with Life Scale)**',
+          '  - Evaluated psychometric properties using dichotomous and polytomous IRT models',
+          '  - Assessed threshold ordering, local independence, item information',
+          '',
+          '• **MCAS Data Analysis with GLM**',
+          '  - Hierarchical regression on English Language Arts proficiency rates',
+          '  - Analyzed impact of Limited English Proficient and low-income enrollment',
+          '',
+          '• **TIMSS 2019: Technology Use and Math Achievement (HLM)**',
+          '  - Applied hierarchical linear modeling with plausible values',
+          '  - Revealed significant school-level variance and cross-level effects',
+          '',
+          'Literature Reviews:',
+          '',
+          '• **Psychometric Critique of the AMAS (Abbreviated Math Anxiety Scale)**',
+          '  - Critical review of validation study with Italian students',
+          '  - Re-analyzed CFA results, identified measurement fairness issues',
+          '',
+          '• **Literature Review of LLM-Based Distractor Generation**',
+          '  - Compared traditional distractor design with LLM-based methods',
+          '  - Proposed frameworks for AI-based distractor generation in large-scale testing'
+        ],
+        publications: [
+          '> open publications',
+          '',
+          'Conference Presentations:',
+          '',
+          '[1] Wang, F., Wu, R., Sunbury, S., Sadler, P. & Sonnert, G. (Submitted)',
+          '    "From curiosity to commitment? Latent class analysis of pre-college',
+          '    computing interest and college aspirations."',
+          '    Annual Meeting of the National Council on Measurement in Education',
+          '    (NCME), Philadelphia, PA',
+          '',
+          'In Submission:',
+          '',
+          '[2] Keum, B. T., Wang, F., Wong, M., Volpe, V. V., & Oh, H.',
+          '    "When Support Backfires: Online Mental Health Engagement as',
+          '    Moderator of the Link Between Online Racism and Suicide Risk."',
+          '',
+          '[3] Wang, F., Wu, R., Sunbury, S., Sadler, P. & Sonnert, G.',
+          '    "How are outside-school computer science experiences during the',
+          '    high school years related to college students\' CS self-efficacy?"'
+        ],
+        skills: [
+          '> open skills',
+          '',
+          '**Psychometric Models:**',
+          '- IRT (1PL, 2PL, 3PL, PCM, GPCM, GRM)',
+          '- CFA, Measurement Invariance',
+          '- LMS (Latent Moderated Structural Equation Modeling)',
+          '- Latent Class Analysis (LCA)',
+          '',
+          '**Statistical Models:**',
+          '- Multiple & Logistic Regression',
+          '- Hierarchical Linear Modeling (HLM)',
+          '- Random Coefficient Models',
+          '',
+          '**Software & Tools:**',
+          '- R, Python, LaTeX',
+          '- SPSS, Mplus, IRTPRO, BILOG, HLM7'
+        ]
+      };
+
+      function clearTerminal() { 
+        terminal.textContent = ''; 
+      }
+
+      function setNavDisabled(disabled) {
+        allTopLinks.forEach(link => {
+          link.classList.toggle('disabled', disabled);
+          disabled ? link.setAttribute('aria-disabled', 'true') : link.removeAttribute('aria-disabled');
+        });
+      }
+
+      function cancelTyping() {
+        typingToken++;
+        if (typingTimeout) { 
+          clearTimeout(typingTimeout); 
+          typingTimeout = null; 
+        }
+        isTyping = false;
+        setNavDisabled(false);
+      }
+
+      function typeLines(lines, done) {
+        isTyping = true;
+        setNavDisabled(true);
+        var i = 0, char = 0;
+        var myToken = ++typingToken;
+        
+        function step() {
+          if (myToken !== typingToken) { 
+            return; 
+          }
+          if (i >= lines.length) { 
+            isTyping = false; 
+            setNavDisabled(false); 
+            if (myToken === typingToken && done) done(); 
+            return; 
+          }
+          var line = lines[i];
+          if (char < line.length) {
+            terminal.textContent += line.charAt(char);
+            char++;
+          } else {
+            terminal.textContent += '\n';
+            i++; 
+            char = 0;
+          }
+          terminal.scrollTop = terminal.scrollHeight;
+          typingTimeout = setTimeout(step, 3);
+        }
+        typingTimeout = setTimeout(step, 0);
+      }
+
+      function linkify() {
+        var text = terminal.textContent;
+        var html = text
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener">$1<\/a>')
+          .replace(/\*\*(.*?)\*\*/g, '<strong style="color: #ffd700; font-weight: bold;">$1</strong>')
+          .replace(/(\bWang,?\s*F\.?|\bFeng\s*Wang|\bF\.\s*Wang)/g, '<span style="color: #ffd700; font-weight: bold;">$1</span>');
+        terminal.innerHTML = html;
+      }
+
+      function show(key) {
+        var lines = contentMap[key] || ['> unknown command'];
+        terminal.hidden = false;
+        cancelTyping();
+        clearTerminal();
+        typeLines(lines, linkify);
+        terminal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      navLinks.forEach(link => {
+        link.onclick = e => {
+          e.preventDefault();
+          show(link.dataset.target);
+        };
+      });
+
+      document.querySelectorAll('.links a[href]:not([data-target]):not([href^="mailto:"])').forEach(link => {
+        link.target = '_blank';
+        link.rel = 'noopener';
+      });
+
+      const hash = location.hash.slice(1);
+      if (hash && contentMap[hash]) {
+        show(hash);
+      }
+    })();
+  </script>
+</body>
+
+</html>
