@@ -25,14 +25,16 @@ All section content is stored inside a JavaScript object called `contentMap`.
 Each key corresponds to a menu item (data-target in the HTML). Clicking that link triggers show(key) which prints the text with a typing animation inside the <div id="terminal">.
 
 2. Typing Effect
+
 The animation speed is set to 3ms per character:
 
-js
-Copy code
 typingTimeout = setTimeout(step, 3);
+
+
 You can increase it for slower typing (e.g., 15) or set it to 0 for instant rendering.
 
 3. Link Highlighting
+
 After typing finishes, the script:
 
 Converts any http(s) links into clickable hyperlinks (opens in a new tab)
@@ -42,22 +44,25 @@ Renders **bold text** in gold
 Highlights occurrences of “Feng Wang” or “Wang, F.” in gold for emphasis
 
 4. Auto-Load via URL Hash
+
 Visiting a URL like
 https://lyu-meng.github.io/Feng/#skills
 automatically opens the “Skills” section on load.
 
 💻 Local Preview
+
 To test locally:
 
 Clone this repo
 
-bash
-Copy code
 git clone https://github.com/lyu-meng/Feng.git
 cd Feng
+
+
 Open index.html directly in your browser — no server required.
 
 🚀 Deploy to GitHub Pages
+
 Go to Settings → Pages
 
 Under Source, choose Deploy from a branch
@@ -70,6 +75,7 @@ Your site will appear at
 https://lyu-meng.github.io/Feng/
 
 🧠 Customization Guide
+
 Profile Info — edit <h1> and <p class="tag"> in the HTML
 
 Image — replace the base64 string in the <img> tag with your own photo URL
@@ -81,6 +87,7 @@ Content — edit the contentMap object for each section’s text
 Colors & Styles — modify the CSS inside <style> (e.g., .terminal, .head img, .links a)
 
 🧰 Tech Stack
+
 HTML5
 
 Vanilla CSS
