@@ -9,15 +9,6 @@ It features a **terminal-style interface**: when you click the top navigation li
 
 You can view the live version via GitHub Pages once you enable it in your repository settings.
 
-## 🧩 File Structure
-
-Feng/
-├── index.html # Main page with all content, style, and scripts
-└── README.md # Project documentation (this file)
-
-css
-Copy code
-
 ## ✨ Features
 
 - **Single-page portfolio** — all logic in one self-contained HTML file  
