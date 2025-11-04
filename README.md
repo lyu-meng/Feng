@@ -37,6 +37,7 @@ var contentMap = {
   ],
   ...
 };
+
 Each key corresponds to a menu item (data-target in the HTML). Clicking that link triggers show(key) which prints the text with a typing animation inside the <div id="terminal">.
 
 2. Typing Effect
