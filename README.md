@@ -1,6 +1,6 @@
 # Feng
 
-A minimalist, single-file personal website for **Feng Wang**, showcasing education, research, projects, publications, and skills in applied statistics and psychometrics.
+A minimalist, single-file personal website for **Feng Wang** that I built for practicise, showcasing education, research, projects, publications, and skills in applied statistics and psychometrics.
 
 ## 🌐 Overview
 
@@ -20,22 +20,8 @@ You can view the live version via GitHub Pages once you enable it in your reposi
 ## ⚙️ How It Works
 
 ### 1. Content System
-All section content is stored inside a JavaScript object called `contentMap`, e.g.:
+All section content is stored inside a JavaScript object called `contentMap`.
 
-```js
-var contentMap = {
-  education: [
-    '> open education',
-    '',
-    '**Boston College** (2023 - 2025)',
-    '- M.S. in Applied Statistics and Psychometrics',
-    '- Dean\'s Scholarship recipient (All semesters)',
-    '',
-    '**University of California, Davis** (2017 - 2020)',
-    '- B.S. in Psychology'
-  ],
-  ...
-};
 Each key corresponds to a menu item (data-target in the HTML). Clicking that link triggers show(key) which prints the text with a typing animation inside the <div id="terminal">.
 
 2. Typing Effect
@@ -102,13 +88,6 @@ Vanilla CSS
 Vanilla JavaScript
 
 No frameworks, no npm packages, no build process.
-
-👤 Author
-Feng Wang
-M.S. Graduate, Applied Statistics and Psychometrics
-Boston College
-Email: hgwang98@gmail.com | Phone: +1 617-906-1133
-LinkedIn | CV
 
 🪪 License
 MIT License — feel free to reuse and modify with attribution.
