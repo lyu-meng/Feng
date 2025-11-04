@@ -1,4 +1,4 @@
-# Feng
+# Introduction
 
 A minimalist, single-file personal website for **Feng Wang** that I built for practicise, showcasing education, research, projects, publications, and skills in applied statistics and psychometrics.
 
